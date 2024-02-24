@@ -40,7 +40,7 @@ const App = () => {
     })
   }
 
-  useEffect(() => {
+  useEffect((postData) => {
     postData()
   }, [currentDate])
 

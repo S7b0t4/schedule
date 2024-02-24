@@ -1,6 +1,13 @@
+*{
+  font-family: "Open Sans", sans-serif;
+}
+.main_block_link{
+  color: black;
+  cursor: pointer;
+}
 .main_block{
   text-align: center;
-  max-width: 1000px;
+  max-width: 20vw;
   margin: 0 auto;
 }
 .main_block_top_row{
@@ -33,42 +40,69 @@
   display: flex;
   align-items: center;
   padding: 5px;
-  border: 1px solid black;
-  border-right: 0;
+  color: gray;
+  font-size: 14px;
 }
 .break_value_block{
   display: flex;
   align-items: center;
   padding: 5px;
-  border: 1px solid black;
-  border-left: 0;
 }
 
 .lesson{
   display: flex;
-  border: 1px solid gray;
-  border-radius: 10px;
-}
-
-.lesson_time_block{
-  display: flex;
   flex-direction: column;
+  text-align: start;
+  background: rgb(228, 228, 228);
   padding: 5px;
+  border-radius: 5px;
+
 }
 .lesson_value_block{
   display: flex;
   align-items: center;
   width: 100%;
   padding: 5px;
+  font-size: 18px;
+}
+.lesson_time_block{
+  display: flex;
+  padding: 5px;
+  color: gray;
+  font-size: 14px;
 }
 .title{
   text-align: center;
+}
+.group_block{
+  position: relative;
 }
 .group_row{
   display: flex;
   justify-content: center;
   gap: 10px;
 }
+.group_colum{
+  background: rgb(228, 228, 228);
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
 .group_item{
   cursor: pointer;
+  padding: 5px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 3px;
+}
+.gray{
+  background: white;
+}
+.white{
+  background: rgb(195, 195, 195);
+}
+@media screen and (max-width: 1200px) {
+  .center{
+    max-width: 100vw;
+  }
 }

@@ -9,7 +9,9 @@ import ScheduleMainBlock from './Component/ScheduleMainBlock';
 const App = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const [schedule, setSchedule] = useState([[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],])
+  const [groupIndex, setGroupIndex] = useState(1)
+
+  const [schedule, setSchedule] = useState()
   
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1;
@@ -33,9 +35,9 @@ const App = () => {
 
   return (
     <div className='main_block'>
-      <Management group={schedule[1]} setCurrentDate={(v) => setCurrentDate(v)} day={day} month={month} year={year}/>
+      <Management title={schedule[0]} setGroupIndex={(v)=>{setGroupIndex(v)}} group={schedule[1]} setCurrentDate={(v) => setCurrentDate(v)}/>
       {
-        Array.isArray(schedule) && <ScheduleMainBlock schedule={schedule}/>
+        Array.isArray(schedule) && <ScheduleMainBlock groupIndex={groupIndex} schedule={schedule}/>
       }
       {
         typeof schedule === 'object' && <div>{schedule.description}</div>

@@ -25,20 +25,41 @@
   gap: 15px;
 }
 
-.row{
+.break{
   display: flex;
 }
-.jcsb{
-  justify-content: space-between;
+
+.break_time_block{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid black;
+  border-right: 0;
+}
+.break_value_block{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid black;
+  border-left: 0;
 }
 
-.time_block{
-  padding: 5px;
-  border: 1px solid black;
+.lesson{
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 10px;
 }
-.value_block{
+
+.lesson_time_block{
+  display: flex;
+  flex-direction: column;
   padding: 5px;
-  border: 1px solid black;
+}
+.lesson_value_block{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
 }
 .title{
   text-align: center;
@@ -47,4 +68,7 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+.group_item{
+  cursor: pointer;
 }

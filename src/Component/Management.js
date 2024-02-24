@@ -2,7 +2,7 @@ import React from 'react';
 
 import MapGroup from './MapGroup';
 
-const Management = ({ group, setCurrentDate, day, month, year}) => {
+const Management = ({ title, setGroupIndex, group, setCurrentDate}) => {
 
   const incrementDay = () => {
     setCurrentDate(prevDate => {
@@ -23,8 +23,8 @@ const Management = ({ group, setCurrentDate, day, month, year}) => {
   return (
     <div>
       <div className='colum'>
-        <div>{day}/{month}/{year}</div>
-        {group && <MapGroup group={group.slice(1)}/>}
+        <div>{title}</div>
+        {group && <MapGroup setGroupIndex={(v)=> setGroupIndex(v)} group={group}/>}
       </div>
       <div className='main_block_top_row'>
         <div className='main_block_top_row_button' onClick={decrementDay}>⬅</div>

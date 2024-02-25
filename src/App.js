@@ -22,7 +22,7 @@ const App = () => {
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `https://eb2164c6a145b66fe99c26a10b4ae135.serveo.net/`;
+  const url = `https://dd9ac60e311115a64d50f6c6c7019c36.serveo.net/`;
 
   useEffect(() => {
     const fetchData = async () => {

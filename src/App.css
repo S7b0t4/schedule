@@ -75,7 +75,9 @@
   text-align: center;
 }
 .group_block{
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .group_row{
   display: flex;

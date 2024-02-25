@@ -16,18 +16,18 @@ const App = () => {
     const dayIndex = currentDate.getDay();
     return daysOfWeek[dayIndex];
   }
-  
+
   const day = currentDate.getDate();
   const wday = getDayOfWeek();
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `https://7a2a11d7e3d4b2740ef9207266b18501.serveo.net/`;
+  const url = `https://eb2164c6a145b66fe99c26a10b4ae135.serveo.net`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`${url}post`, {"day":day, "month":month, "year":year});
+        const response = await axios.post(`${url}post`, { "day": day, "month": month, "year": year });
         setSchedule(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -53,6 +53,9 @@ const App = () => {
     <div className='main_block'>
       <div>
         <Management
+          url={url}
+          setIsLoading={(v) => { setIsLoading(v) }}
+          setSchedule={(v) => { setSchedule(v) }}
           groupNow={groupNow}
           setGroupNow={setGroupNow}
           setGroupIndex={setGroupIndex}

@@ -22,12 +22,13 @@ const App = () => {
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `https://dd9ac60e311115a64d50f6c6c7019c36.serveo.net/`;
+  const url = `https://a0f5cb0d6816989002f3e0636f35e0f0.serveo.net/`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(`${url}post`, { "day": day, "month": month, "year": year });
+        console.log(response.data)
         setSchedule(response.data);
         setIsLoading(false);
       } catch (error) {

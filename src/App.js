@@ -22,7 +22,7 @@ const App = () => {
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `http://136.169.190.230:5000/`;
+  const url = `https://glossy-mini-pram.glitch.me/`;
 
   useEffect(() => {
     const fetchData = async () => {

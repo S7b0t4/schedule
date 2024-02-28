@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Lesson from './Lesson';
+
 const ScheduleBlock = ({groupIndex, schedule}) => {
   return (
     <div className='column gap_10'>
@@ -19,8 +21,7 @@ const ScheduleBlock = ({groupIndex, schedule}) => {
             }
             return (
               <div className='lesson' key={rowIndex}>
-                {row[groupIndex] && <div className='lesson_value_block'>{row[groupIndex]}</div>}
-                {!row[groupIndex] && <div className='lesson_value_block'>НЕТ ПАРЫ</div>}
+                {row[groupIndex] && <Lesson row={row} groupIndex={groupIndex}/>}
                 <div className='lesson_time_block'>
                   <div>{row[0][0]} </div>
                   <div>-</div>

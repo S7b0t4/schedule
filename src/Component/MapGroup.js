@@ -14,7 +14,8 @@ const MapGroup = ({ groupNow, setGroupNow, setGroupIndex, group }) => {
   return (
     <div className='group_block'>
       <div className='group_item' onClick={changeVive}>
-        {groupNow}
+        {Array.isArray(groupNow) && <div>{groupNow[0]}/{groupNow[1]}</div>}
+        {!Array.isArray(groupNow) && <div>{groupNow}</div>}
       </div>
       {vive && (
         <div className='group_colum'>
@@ -23,7 +24,7 @@ const MapGroup = ({ groupNow, setGroupNow, setGroupIndex, group }) => {
               let color = index % 2 === 1 ? "gray" : "white";
               return (
                 <div
-                  key={index} // Add key prop here
+                  key={index}
                   className={"group_item " + color}
                   onClick={() => {
                     setGroupIndex(index);
@@ -31,7 +32,8 @@ const MapGroup = ({ groupNow, setGroupNow, setGroupIndex, group }) => {
                     changeVive();
                   }}
                 >
-                  {element}
+                  {Array.isArray(element) && <div>{element[0]}/{element[1]}</div>}
+                  {!Array.isArray(element) && <div>{element}</div>}
                 </div>
               );
             }

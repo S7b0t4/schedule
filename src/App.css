@@ -78,6 +78,9 @@
   color: gray;
   font-size: 14px;
 }
+.lesson_row{
+  display: flex;
+}
 .title{
   text-align: center;
 }
@@ -110,11 +113,19 @@
 .white{
   background: rgb(195, 195, 195);
 }
+.main_block_row{
+  display: flex;
+  justify-content: space-between;
+}
 @media screen and (max-width: 1200px) {
   .center{
     max-width: 100vw;
   }
   .main_block{
+    height: 100dvh;
     max-width: 100vw;
+  }
+  .main_block_row{
+    display: none;
   }
 }

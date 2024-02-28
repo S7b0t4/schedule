@@ -24,7 +24,7 @@ const App = () => {
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `https://s7b0t4-website-server.ru:5000/`;
+  const url = `http://localhost:5000/`;
 
   useEffect(() => {
     setSchedule(null)

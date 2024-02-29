@@ -1,6 +1,14 @@
 *{
   font-family: "Open Sans", sans-serif;
 }
+.light{
+  background: white;
+  color: black;
+}
+.dark{
+  background: black;
+  color: white;
+}
 .main_block_link{
   color: black;
   cursor: pointer;
@@ -11,6 +19,7 @@
   margin: 0 auto;
 }
 .main_block_top_row{
+  padding: 7px;
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -117,12 +126,23 @@
   display: flex;
   justify-content: space-between;
 }
+.rewrite_link{
+  display: block;
+}
+.theme_button{
+  max-width: 30px;
+  max-height: 30px;
+  cursor: pointer;
+}
 @media screen and (max-width: 1200px) {
+  .rewrite_link{
+    display: none;
+  }
   .center{
     max-width: 100vw;
   }
   .main_block{
-    height: 100dvh;
+    height: 97dvh;
     max-width: 100vw;
   }
   .main_block_row{

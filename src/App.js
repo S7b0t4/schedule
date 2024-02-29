@@ -24,7 +24,7 @@ const App = () => {
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `https://s7b0t4-website-server.ru:5000/`;
+  const url = `http://localhost:5000/`;
 
   useEffect(() => {
     setSchedule(null)
@@ -32,7 +32,6 @@ const App = () => {
       console.log("try to connect")
       try {
         const response = await axios.post(`${url}post`, { "day": day, "month": month, "year": year });
-        console.log(response.data)
         setSchedule(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -49,7 +48,7 @@ const App = () => {
       setIsFullSchedule(schedule.length > 3);
     }
   }, [schedule]);
-  
+
   const incrementDay = () => {
     setCurrentDate(prevDate => {
       const newDate = new Date(prevDate);
@@ -69,12 +68,11 @@ const App = () => {
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       incrementDay()
-      console.log("Swiped left");
     },
     onSwipedRight: () => {
       decrementDay()
-      console.log("Swiped right");
-    }
+    },
+
   });
 
   return (
@@ -97,12 +95,12 @@ const App = () => {
         month={month}
         year={year}
       />
-      {!isLoading ? 
-      <div>
-        {schedule ? (
+      {!isLoading ?
+        <div>
+          {schedule ? (
             <div>
               {isFullSchedule ? (
-                <Schedule isLoading={isLoading} groupIndex={groupIndex} schedule={schedule}/>
+                <Schedule isLoading={isLoading} groupIndex={groupIndex} schedule={schedule} />
               ) : (
                 <div>{schedule[0]}</div>
               )}
@@ -111,11 +109,11 @@ const App = () => {
             <div>
               No data available
             </div>
-        )}
-      </div> : 
-      <div>
-        Loading...
-      </div>}
+          )}
+        </div> :
+        <div>
+          Loading...
+        </div>}
     </div>
   );
 }

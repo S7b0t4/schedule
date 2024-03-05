@@ -94,25 +94,19 @@ const App = () => {
       return newDate;
     });
   };
-  
-  const [swipeDirection, setSwipeDirection] = useState(null);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
-      setSwipeDirection('animate__bounceInRight');
-      setTimeout(() => setSwipeDirection(null), 200);
       incrementDay();
     },
     onSwipedRight: () => {
-      setSwipeDirection('animate__bounceInRight');
-      setTimeout(() => setSwipeDirection(null), 200);
       decrementDay();
     },
   });
 
   return (
     <div className={`wrapper ${themeClass}`}>
-      <div className={`main_block animate__animated ${swipeDirection}`} {...handlers}>
+      <div className={`main_block animate__animated`} {...handlers}>
         <div className="main_block_row">
           <div className={`main_block_top_row_button ${themeClass}`} onClick={decrementDay}>⬅</div>
           <div className={`main_block_top_row_button ${themeClass}`} onClick={incrementDay}>⮕</div>

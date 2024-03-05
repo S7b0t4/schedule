@@ -4,14 +4,42 @@ import "./App.css"
 import Management from './Component/Management';
 import Schedule from './Component/Schedule';
 import { useSwipeable } from 'react-swipeable';
+import 'animate.css';
 
 const App = () => {
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [groupIndex, setGroupIndex] = useState(1);
   const [schedule, setSchedule] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [groupNow, setGroupNow] = useState("select");
   const [isFullSchedule, setIsFullSchedule] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState()
+
+  const setLocalStorageValue = (value) => {
+    localStorage.setItem("groupIndex", value);
+  };
+
+  const themeClass = isDarkTheme ? 'dark' : '';
+
+
+  const getLocalStorageValue = () => {
+    const value = localStorage.getItem("groupIndex");
+    if (!value) {
+      localStorage.setItem("groupIndex", 1);
+    }
+    else {
+      setGroupIndex(value)
+    }
+  };
+
+  useState(() => {
+    getLocalStorageValue()
+  }, [])
+
+
+  useEffect(() => {
+    setLocalStorageValue(groupIndex)
+  }, [groupIndex])
 
   const getDayOfWeek = () => {
     const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
@@ -27,6 +55,8 @@ const App = () => {
   const url = `https://s7b0t4-website-server.ru/`;
 
   useEffect(() => {
+    setIsDarkTheme(window.matchMedia('(prefers-color-scheme: dark)').matches)
+
     setSchedule(null)
     const fetchData = async () => {
       console.log("try to connect")
@@ -64,56 +94,63 @@ const App = () => {
       return newDate;
     });
   };
+  
+  const [swipeDirection, setSwipeDirection] = useState(null);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
-      incrementDay()
+      setSwipeDirection('animate__bounceInRight');
+      setTimeout(() => setSwipeDirection(null), 200);
+      incrementDay();
     },
     onSwipedRight: () => {
-      decrementDay()
+      setSwipeDirection('animate__bounceInRight');
+      setTimeout(() => setSwipeDirection(null), 200);
+      decrementDay();
     },
-
   });
 
   return (
-    <div className='main_block' {...handlers}>
-      <div className='main_block_row'>
-        <div className='main_block_top_row_button' onClick={decrementDay}>⬅</div>
-        <div className='main_block_top_row_button' onClick={incrementDay}>⮕</div>
+    <div className={`wrapper ${themeClass}`}>
+      <div className={`main_block animate__animated ${swipeDirection}`} {...handlers}>
+        <div className="main_block_row">
+          <div className={`main_block_top_row_button ${themeClass}`} onClick={decrementDay}>⬅</div>
+          <div className={`main_block_top_row_button ${themeClass}`} onClick={incrementDay}>⮕</div>
+        </div>
+        <Management
+          url={url}
+          setIsLoading={(v) => { setIsLoading(v) }}
+          setSchedule={(v) => { setSchedule(v) }}
+          groupIndex={groupIndex}
+          setGroupIndex={setGroupIndex}
+          group={schedule ? isFullSchedule ? schedule[1] : null : null}
+          setCurrentDate={setCurrentDate}
+          wday={wday}
+          day={day}
+          month={month}
+          year={year}
+          isDarkTheme={isDarkTheme}
+        />
+        {!isLoading ?
+          <div>
+            {schedule ? (
+              <div>
+                {isFullSchedule ? (
+                  <Schedule isDarkTheme={isDarkTheme} isLoading={isLoading} groupIndex={groupIndex} schedule={schedule} />
+                ) : (
+                  <div>{schedule[0]}</div>
+                )}
+              </div>
+            ) : (
+              <div>
+                No data available
+              </div>
+            )}
+          </div> :
+          <div>
+            Loading...
+          </div>}
       </div>
-      <Management
-        url={url}
-        setIsLoading={(v) => { setIsLoading(v) }}
-        setSchedule={(v) => { setSchedule(v) }}
-        groupNow={groupNow}
-        setGroupNow={setGroupNow}
-        setGroupIndex={setGroupIndex}
-        group={schedule ? isFullSchedule ? schedule[1] : null : null}
-        setCurrentDate={setCurrentDate}
-        wday={wday}
-        day={day}
-        month={month}
-        year={year}
-      />
-      {!isLoading ?
-        <div>
-          {schedule ? (
-            <div>
-              {isFullSchedule ? (
-                <Schedule isLoading={isLoading} groupIndex={groupIndex} schedule={schedule} />
-              ) : (
-                <div>{schedule[0]}</div>
-              )}
-            </div>
-          ) : (
-            <div>
-              No data available
-            </div>
-          )}
-        </div> :
-        <div>
-          Loading...
-        </div>}
     </div>
   );
 }

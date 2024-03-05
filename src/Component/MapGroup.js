@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-const MapGroup = ({ groupNow, setGroupNow, setGroupIndex, group }) => {
+import GroupItem from './GroupItem';
+
+const MapGroup = ({ isDarkTheme, groupIndex, setGroupIndex, group }) => {
+  const themeClass = isDarkTheme ? 'dark' : '';
+
   const [vive, setVive] = useState(false);
 
   const changeVive = () => {
@@ -11,34 +15,26 @@ const MapGroup = ({ groupNow, setGroupNow, setGroupIndex, group }) => {
     return null;
   }
 
+  const mapingGroup = group.map((element, index) => {
+    if (element !== "ВРЕМЯ") {
+      let color = index % 2 === 1 ? "gray" : "white";
+      return (
+        <div key={index}>
+          <GroupItem isDarkTheme={isDarkTheme} color={color} index={index} setGroupIndex={(v) => setGroupIndex(v)} changeVive={(v) => changeVive(v)} element={element}/>
+        </div>
+      );
+    }
+    return null;
+  })
+
   return (
     <div className='group_block'>
-      <div className='group_item' onClick={changeVive}>
-        {Array.isArray(groupNow) && <div>{groupNow[0]}/{groupNow[1]}</div>}
-        {!Array.isArray(groupNow) && <div>{groupNow}</div>}
+      <div className={`group_item ${themeClass}`} onClick={changeVive}>
+        <div>{group[groupIndex]}</div>
       </div>
       {vive && (
         <div className='group_colum'>
-          {group.map((element, index) => {
-            if (element !== "ВРЕМЯ") {
-              let color = index % 2 === 1 ? "gray" : "white";
-              return (
-                <div
-                  key={index}
-                  className={"group_item " + color}
-                  onClick={() => {
-                    setGroupIndex(index);
-                    setGroupNow(element);
-                    changeVive();
-                  }}
-                >
-                  {Array.isArray(element) && <div>{element[0]}/{element[1]}</div>}
-                  {!Array.isArray(element) && <div>{element}</div>}
-                </div>
-              );
-            }
-            return null; // Add this line to handle the case when element is "ВРЕМЯ"
-          })}
+          {mapingGroup}
         </div>
       )}
     </div>

@@ -2,11 +2,11 @@ import React from 'react';
 
 import ScheduleBlock from './ScheduleBlock';
 
-const Schedule = ({ groupIndex, schedule }) => {
+const Schedule = ({ isDarkTheme, groupIndex, schedule }) => {
   
   return (
     <div className='center'>
-      <ScheduleBlock groupIndex={groupIndex} schedule={schedule}/>
+      <ScheduleBlock isDarkTheme={isDarkTheme}  groupIndex={groupIndex} schedule={schedule}/>
     </div>
   );
 };

@@ -52,7 +52,7 @@ const App = () => {
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
 
-  const url = `https://s7b0t4-website-server.ru/`;
+  const url = `http://localhost:5000/`;
 
   useEffect(() => {
     setIsDarkTheme(window.matchMedia('(prefers-color-scheme: dark)').matches)

@@ -3,6 +3,12 @@
   margin: 0;
   padding: 0;
 }
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 100vh;
+}
+
 .main_block_link{
   color: black;
   cursor: pointer;
@@ -152,6 +158,10 @@
 .group_item.dark.gray{
   color: white;
   background: rgb(106, 106, 106);
+}
+.group_item.dark.group_now_theme{
+  background: rgb(160, 160, 160);
+  color: rgb(0, 0, 0);
 }
 .gray{
   background: white;

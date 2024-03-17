@@ -18,14 +18,20 @@ const MapGroup = ({ isDarkTheme, groupIndex, setGroupIndex, group }) => {
   const mapingGroup = group.map((element, index) => {
     if (element !== "ВРЕМЯ") {
       let color = index % 2 === 1 ? "gray" : "white";
+
+      if(group[groupIndex] === element){
+        color = "group_now_theme"
+      }
       return (
         <div key={index}>
-          <GroupItem isDarkTheme={isDarkTheme} color={color} index={index} setGroupIndex={(v) => setGroupIndex(v)} changeVive={(v) => changeVive(v)} element={element}/>
+          <GroupItem groupNow={group[groupIndex]} isDarkTheme={isDarkTheme} color={color} index={index} setGroupIndex={(v) => setGroupIndex(v)} changeVive={(v) => changeVive(v)} element={element}/>
         </div>
       );
     }
     return null;
   })
+
+  console.log(groupIndex)
 
   return (
     <div className='group_block'>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GroupItem = ({ groupNow, isDarkTheme, color, index, setGroupIndex, changeVive, element}) => {
+const GroupItem = ({ isDarkTheme, color, index, setGroupIndex, changeVive, element}) => {
   const themeClass = isDarkTheme ? 'dark' : '';
   return (
     <div

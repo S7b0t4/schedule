@@ -17,7 +17,7 @@ const MapGroup = ({ isDarkTheme, groupIndex, setGroupIndex, group }) => {
 
   const mapingGroup = group.map((element, index) => {
     if (element !== "ВРЕМЯ") {
-      let color = index % 2 === 1 ? "gray" : "white";
+      let color = "white"
 
       if(group[groupIndex] === element){
         color = "group_now_theme"
